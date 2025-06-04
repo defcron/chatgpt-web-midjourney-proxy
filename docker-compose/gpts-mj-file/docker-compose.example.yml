@@ -1,6 +1,6 @@
 services:
   gptweb:
-    container_name: chatgpt-proxy
+    container_name: gptweb
     image: gptenv/chatgpt-web-midjourney-proxy:latest # 总是使用latest,更新时重新pull该tag镜像即可
     restart: always
     ports:
@@ -28,7 +28,7 @@ services:
 
   # midjourney服务 可选
   midjourney-proxy:
-    container_name: midjourney-proxy
+    container_name: gptweb-midjourney
     image: novicezk/midjourney-proxy:2.5.5
     restart: always
     ports:
@@ -42,7 +42,7 @@ services:
   
   #文件服务 可选
   fileserver:
-    container_name: chatgpt-proxy-fileserver
+    container_name: gptweb-fileserver
     image: ydlhero/file-server:latest
     restart: always
     environment:
