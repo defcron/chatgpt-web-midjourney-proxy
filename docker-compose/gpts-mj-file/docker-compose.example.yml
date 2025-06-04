@@ -29,8 +29,7 @@ services:
   # midjourney服务 可选
   midjourney-proxy:
     container_name: midjourney-proxy
-    #image: novicezk/midjourney-proxy:2.5.5
-    image: novicezk/midjourney-proxy:latest
+    image: novicezk/midjourney-proxy:2.5.5
     restart: always
     ports:
       - 6013:8080 #映射端口
