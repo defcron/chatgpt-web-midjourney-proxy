@@ -3,6 +3,8 @@ docker-compose.yml
 package-lock.json
 yarn.lock
 
+./docker-compose/gpts-mj-file/data/*
+
 # Logs
 logs
 *.log

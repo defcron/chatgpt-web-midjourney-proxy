@@ -1,23 +1,22 @@
-version: '3'
-
 services:
   gptweb:
-    container_name: chatgpt-web-midjourney-proxy
-    image: ydlhero/chatgpt-web-midjourney-proxy # 总是使用latest,更新时重新pull该tag镜像即可
+    container_name: chatgpt-proxy
+    image: ydlhero/chatgpt-web-midjourney-proxy:latest # 总是使用latest,更新时重新pull该tag镜像即可
+    restart: always
     ports:
       - 6050:3002
     environment:
-      TZ: Asia/Shanghai # 指定时区
+      TZ: America/Toronto # 指定时区
       # 必选
-      OPENAI_API_KEY: sk-xxxx
+      OPENAI_API_KEY:
       # API接口地址，可选，设置 OPENAI_API_KEY 时可用
       OPENAI_API_BASE_URL:
       # 访问权限密钥，可选 注意修改
-      AUTH_SECRET_KEY: mygod
+      AUTH_SECRET_KEY: \"myG\(o\)D\"
       # midjourney 服务器地址，可选 可用下面的 http://midjourney-proxy:8080
       MJ_SERVER: http://midjourney-proxy:8080
       # midjourney API密钥，可选
-      MJ_API_SECRET: mygod
+      MJ_API_SECRET: \"myG\(o\)D\"
       #API_UPLOADER 是否可以上传 1 可以其他都不可以，可选
       API_UPLOADER: 1
       #FILE_SERVER 文件服务器，可选 可以用下面的 http://fileserver:3012
@@ -29,27 +28,30 @@ services:
 
   # midjourney服务 可选
   midjourney-proxy:
-    image: novicezk/midjourney-proxy:2.5.5
+    container_name: midjourney-proxy
+    #image: novicezk/midjourney-proxy:2.5.5
+    image: novicezk/midjourney-proxy:latest
     restart: always
-    # ports:
-    #   - 6013:8080 #映射端口
+    ports:
+      - 6013:8080 #映射端口
     environment:
-      TZ: Asia/Shanghai # 指定时区
-      mj.discord.guild-id: xxx # xxx 如何获取
-      mj.discord.channel-id: xxx
-      mj.discord.user-token: xxx
-      mj.api-secret: mygod # MJ_API_SECRET
+      TZ: America/Toronto # 指定时区
+      mj.discord.guild-id: _zyxxx # xxx 如何获取
+      mj.discord.channel-id: _zyxxx
+      mj.discord.user-token: _zyxxx
+      mj.api-secret: \"myG\(o\)D\" # MJ_API_SECRET
   
   #文件服务 可选
   fileserver:
+    container_name: chatgpt-proxy-fileserver
     image: ydlhero/file-server:latest
     restart: always
     environment:
-      TZ: Asia/Shanghai # 指定时区
+      TZ: America/Toronto # 指定时区
       #对外显示的域名
       SERVER_NAME: http://myip:3102
     ports:
-      - "3102:3102"
+      - 3102:3102
     volumes:
-      - /data/uploads:/app/uploads
+      - ./data/uploads:/app/uploads
 
