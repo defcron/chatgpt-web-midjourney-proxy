@@ -1,7 +1,7 @@
 services:
   gptweb:
     container_name: chatgpt-proxy
-    image: ydlhero/chatgpt-web-midjourney-proxy:latest # 总是使用latest,更新时重新pull该tag镜像即可
+    image: gptenv/chatgpt-web-midjourney-proxy:latest # 总是使用latest,更新时重新pull该tag镜像即可
     restart: always
     ports:
       - 6050:3002
